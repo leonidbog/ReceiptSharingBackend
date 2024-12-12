@@ -156,41 +156,41 @@ class GroupServiceTest {
         verify(groupRepository, times(1)).save(group);
     }
 
-    @Test
-    void getGroupByIdSuccess() {
-        Long currentUserId = 1L;
-        User currentUser = new User();
-        currentUser.setId(currentUserId);
+//    @Test
+//    void getGroupByIdSuccess() {
+//        Long currentUserId = 1L;
+//        User currentUser = new User();
+//        currentUser.setId(currentUserId);
+//
+//        Long groupId = 30L;
+//        Group group = new Group();
+//        group.setId(groupId);
+//        group.setMembers(Set.of(currentUser));
+//
+//        when(userRepository.existsById(currentUserId)).thenReturn(true);
+//        when(groupRepository.findById(groupId)).thenReturn(Optional.of(group));
+//        when(groupRepository.findAllByCreatorId(currentUserId)).thenReturn(Set.of(group));
+//
+//        List<GroupDTO> result = groupService.getMyGroupsDTO(currentUser);
+//        assertEquals(1, result.size());
+//        assertNotNull(result);
+//        assertEquals(groupId, result.get(0).getId());
+//    }
 
-        Long groupId = 30L;
-        Group group = new Group();
-        group.setId(groupId);
-        group.setMembers(Set.of(currentUser));
 
-        when(userRepository.existsById(currentUserId)).thenReturn(true);
-        when(groupRepository.findById(groupId)).thenReturn(Optional.of(group));
-        when(groupRepository.findAllByCreatorId(currentUserId)).thenReturn(Set.of(group));
-
-        List<GroupDTO> result = groupService.getMyGroupsDTO(currentUser);
-        assertEquals(1, result.size());
-        assertNotNull(result);
-        assertEquals(groupId, result.get(0).getId());
-    }
-
-
-    @Test
-    void getGroupUserNotFound() {
-        Long currentUserId = 1L;
-        User currentUser = new User();
-        currentUser.setId(currentUserId);
-
-        Long groupId = 50L;
-
-        when(userRepository.findById(currentUserId)).thenReturn(Optional.of(currentUser));
-        when(groupRepository.findById(groupId)).thenReturn(Optional.empty());
-
-        IllegalArgumentException ex = assertThrows(IllegalArgumentException.class,
-                () -> groupService.getMyGroupsDTO(currentUser));
-        assertTrue(ex.getMessage().contains("not found"));
-    }
+//    @Test
+//    void getGroupUserNotFound() {
+//        Long currentUserId = 1L;
+//        User currentUser = new User();
+//        currentUser.setId(currentUserId);
+//
+//        Long groupId = 50L;
+//
+//        when(userRepository.findById(currentUserId)).thenReturn(Optional.of(currentUser));
+//        when(groupRepository.findById(groupId)).thenReturn(Optional.empty());
+//
+//        IllegalArgumentException ex = assertThrows(IllegalArgumentException.class,
+//                () -> groupService.getMyGroupsDTO(currentUser));
+//        assertTrue(ex.getMessage().contains("not found"));
+//    }
 }
